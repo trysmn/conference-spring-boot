@@ -2,15 +2,15 @@
 
 Create Docker container with Postgres database:
 
-    docker create --name postgres-demo -e POSTGRES_PASSWORD=Welcome -p 5432:5432 postgres:11.5-alpine
+    docker create --name postgres-conference -e POSTGRES_PASSWORD=Welcome -p 5432:5432 postgres:11.5-alpine
 
 Start container:
 
-    docker start postgres-demo
+    docker start postgres-conference
 
 Stop container:
 
-    docker stop postgres-demo
+    docker stop postgres-conference
 
 Connection Info:
 
@@ -25,7 +25,7 @@ Note: This stores the data inside the container - when you delete the container,
 Connect to PSQL prompt from docker:
  
 ```
-docker exec -it postgres-demo psql -U postgres
+docker exec -it postgres-conference psql -U postgres
 ```
    
 ## Application Database Setup
@@ -46,10 +46,10 @@ Note: If you are using Docker, the last two steps can be done like so:
 
 Setup the Tables:
 
-    docker cp create_tables.sql postgres-demo:/create_tables.sql
-    docker exec -it postgres-demo psql -d conference_app -f create_tables.sql -U postgres
+    docker cp create_tables.sql postgres-conference:/create_tables.sql
+    docker exec -it postgres-conference psql -d conference_app -f create_tables.sql -U postgres
 
 Install the Data:
 
-    docker cp insert_data.sql postgres-demo:/insert_data.sql
-    docker exec -it postgres-demo psql -d conference_app -f insert_data.sql -U postgres
+    docker cp insert_data.sql postgres-conference:/insert_data.sql
+    docker exec -it postgres-conference psql -d conference_app -f insert_data.sql -U postgres
